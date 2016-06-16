@@ -1,2 +1,6 @@
-syntax: glob
-build
+syntax: regexp
+^build
+^lib/vector_dbc/lib
+^lib/vector_dbc/include
+^lib/vector_dbc/build
+^lib/vector_dbc/share
