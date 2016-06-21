@@ -1,13 +1,13 @@
-CXX=/Users/anilanar/Downloads/emsdk_portable/emscripten/1.35.0/em++
 CXXFLAGS=-std=c++11 -O3 -Wall
 LFLAGS=-O3 -s ALLOW_MEMORY_GROWTH=1 --memory-init-file 0 -Wall
-EXPORT=-s EXPORTED_FUNCTIONS="['_run']" # -s ASSERTIONS=1
+EXPORT=-s EXPORTED_FUNCTIONS="['_run']"
 
 DBC=lib/vector_dbc
 BC=build/main.bc build/libVector_DBC.bc build/jsonxx.bc
 OBJS=build/main.o
 
 .PHONY: all clean $(DBC)/lib/libVector_DBC.dylib
+
 all: dist/main.js
 
 dist/main.js: $(BC)
