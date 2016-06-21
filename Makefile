@@ -12,7 +12,7 @@ all: dist/main.js
 
 dist/main.js: $(BC)
 				@mkdir -p dist
-			  $(CXX) $(LFLAGS) $(EXPORT) -o $@ $^
+				$(CXX) $(LFLAGS) $(EXPORT) -o $@ $^
 
 build/libVector_DBC.bc: $(DBC)/lib/libVector_DBC.dylib
 				cp $^ $@
@@ -38,6 +38,6 @@ build/%.o: src/%.cpp $(DBC)/include/DBC.h
 				$(CXX) -I./$(DBC)/include -I./lib/jsonxx $(CXXFLAGS) $(EXPORT) -o $@ $<
 
 clean:
-			  if [ -a $(DBC)/build/Makefile ]; then make -C $(DBC)/build clean; fi;
+				if [ -a $(DBC)/build ]; then rm -rf $(DBC)/build; fi;
 				rm -rf build
 				rm -rf dist
