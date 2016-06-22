@@ -1,5 +1,5 @@
-CXXFLAGS=-std=c++11 -O3 -Wall
-LFLAGS=-O3 -s ALLOW_MEMORY_GROWTH=1 --memory-init-file 0 -Wall
+CXXFLAGS=-std=c++11 -O3 -fno-exceptions -s ALLOW_MEMORY_GROWTH=1 -Werror
+LDFLAGS=-O3 -s ALLOW_MEMORY_GROWTH=1 --memory-init-file 0 --discard-all
 EXPORT=-s EXPORTED_FUNCTIONS="['_run']"
 
 DBC=lib/vector_dbc
@@ -10,9 +10,13 @@ OBJS=build/main.o
 
 all: dist/main.js
 
-dist/main.js: $(BC)
+dist/main.js: dist/dbc2json.bc
 				@mkdir -p dist
-				$(CXX) $(LFLAGS) $(EXPORT) -o $@ $^
+				$(LD) $^ $(LDFLAGS) $(EXPORT) -o $@
+
+dist/dbc2json.bc: $(BC)
+				@mkdir -p dist
+				$(CXX) $^ $(LFLAGS) -o $@
 
 build/libVector_DBC.bc: $(DBC)/lib/libVector_DBC.dylib
 				cp $^ $@
