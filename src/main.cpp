@@ -136,7 +136,7 @@ extern "C" {
     ostringstream ss;
     File file;
     Network network;
-    auto status = file.load(network, "/test.dbc");
+    auto status = file.load(network, "/file.dbc");
     if (int(status) != 0) {
       ss << "Not OK" << endl;
       return ss.str().c_str();

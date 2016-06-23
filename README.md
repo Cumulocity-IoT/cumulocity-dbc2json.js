@@ -16,11 +16,11 @@ After project is built, `dist/main.js` is created which exports a function calle
 const char* run();
 ```
 
-`run` function expects a DBC file at `/test.dbc` (memory based virtual FS). You can run the following in Javascript to create the file:
+`run` function expects a DBC file at `/file.dbc` (memory based virtual FS). You can run the following in Javascript to create the file:
 
 ```js
 // Assuming dbcFile is the string content of an actual dbc file
-FS.writeFile('/test.dbc', dbcFile);
+FS.writeFile('/file.dbc', dbcFile);
 ```
 
 ### Example usage from browser:
@@ -31,9 +31,9 @@ FS.writeFile('/test.dbc', dbcFile);
   ...
   // Assuming dbcFile is the string content of an actual dbc file
   var parse = Module.cwrap('run', 'string', []);
-  FS.writeFile('/test.dbc', dbcFile);
+  FS.writeFile('/file.dbc', dbcFile);
   var output = parse();
-  FS.unlink('/test.dbc');
+  FS.unlink('/file.dbc');
   console.log(output);
 </script>
 ```
